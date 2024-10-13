@@ -1,0 +1,426 @@
+$primary-color: #FF6A00;
+$secondary-color: #F8F9FA;
+$font-family: 'Arial', sans-serif;
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensure padding and border are included in width/height calculations */
+}
+
+
+
+body {
+    font-family: $font-family;
+    background-color: #F8F9FA !important;   
+}
+
+header {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+    position: relative; /* Positioning context for absolute elements */
+    z-index: 1000;
+    
+
+    /* Header Icons */
+    .header-icons {
+        display: flex;
+        gap: 30px;
+        padding: 0px;
+        justify-content: space-between;
+
+        /* Icon Item */
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            padding: 0px;
+            border-radius: 8px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+
+            &:hover {
+                transform: scale(1.1); 
+            }
+
+            .icon-img {
+                width: 24px;
+                height: 24px;
+                transition: transform 0.3s ease;
+            }
+
+            .icon-label {
+                font-size: 12px;
+                color: #555;
+                transition: color 0.3s ease;
+            }
+        }
+
+        @media (max-width: 768px) {
+            gap: 10px;
+            justify-content: space-between;
+
+            .icon-item {
+                margin: 5px 10px;
+
+                /* Hide specific items in mobile */
+                &:nth-child(1),
+                &:nth-child(2) {
+                    display: none;
+                }
+
+                /* Hide the "Заказы" text but keep the icon */
+                &:nth-child(3) {
+                    .icon-label {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    /* Menu Button */
+    .menu-button {
+        width: 24px;
+        height: 24px;
+        margin-left: 15px;
+        cursor: pointer;
+
+        svg {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.5s ease; /* Smooth transition */
+        }
+
+        .menu-line {
+            transition: all 0.5s ease; /* Smooth transition for all lines */
+        }
+
+        &:hover {
+            .top {
+                transform: rotate(45deg) translate(5px, -10px); /* Rotate to form part of the "X" */
+            }
+        
+            .middle {
+                opacity: 0; /* Fade out the middle line */
+            }
+        
+            .bottom {
+                transform: rotate(-45deg) translate(-10px, 0px); /* Rotate to form the other part of the "X" */
+            }
+        }
+
+        @media (max-width: 768px) {
+            display: block; /* Show the menu button on mobile */
+        }
+    }
+
+    /* Logo - Center on Mobile */
+    .logo {
+        @media (max-width: 768px) {
+            margin: 0 auto;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+    
+}
+
+
+
+
+.breadcrumb {
+    margin-top: 10px;
+    gap: 10px;
+    background-color: #F8F9FA !important;
+    font-size: 14px;
+    .breadcrumb-item + .breadcrumb-item::before {
+        content: "->";
+    }
+
+    @media (max-width: 768px) {
+        display: none !important;
+    }
+}
+
+
+
+
+
+
+.game-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 8px;
+    height: 350px; /* Set a fixed height */
+    background-image: url('./images/cover.png'); /* Set the background image */
+    background-size: 60%; /* Ensure the image covers the left section */
+    background-position: right; /* Align the image to the right */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+
+    /* Text Section */
+    .game-details {
+        flex: 1; /* Allow the text section to grow and take the remaining space */
+        padding-left: 25px; /* Padding around the text */
+        max-width: 50%; /* Ensure the text only takes up half of the container width */
+
+        h1 {
+            font-size: 36px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .badges {
+            margin-top: 15px;
+
+            .badge {
+                margin-right: 5px;
+                margin-top: 5px;
+                padding: 8px;
+                font-size: 13px;
+            }
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+            max-width: 70%;
+            margin-top: 15px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        height: 700px;
+        flex-direction: column; /* Stack the text and background image */
+        background-image: url('./images/cover-2.png'); /* Mobile-specific background image */
+        background-position: top center; /* Align background to the top center */
+        background-size: 100%; /* Make background cover full width */
+        background-repeat: no-repeat; /* Prevent repeating */
+
+        .game-details {
+            max-width: 100%; /* Allow the text to take full width */
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        h1 {
+            font-size: 28px; /* Smaller title for mobile */
+        }
+
+        p {
+            font-size: 14px;
+            min-width: 100%;
+            padding-bottom: 20px;
+        }
+
+        .game-image {
+            display: block;
+            width: 100%; /* Full width image for smaller screens */
+            height: auto;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+.reviews {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+
+    h2 {
+        margin-bottom: 2rem;
+        font-size: 2rem bold;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .reviews-container {
+        max-width: 100%;
+        overflow-x: scroll; /* Horizontal scrolling */
+        white-space: nowrap; /* Prevent line breaks */
+        padding-bottom: 1rem; /* Padding for spacing */
+    }
+
+    .reviews-wrapper {
+        display: inline-flex; /* Items in a row */
+    }
+
+    .review-card {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+        width: 255px; /* Adjust card width for readability */
+        margin-right: 15px; /* Space between cards */
+        margin-top: 10px;
+        overflow: hidden;
+        white-space: normal; /* Allow text wrapping */
+
+        &:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-body {
+            padding: 20px;
+            padding-top: 30px;
+
+            span {
+                display: block;
+                font-size: 13px;
+                color: #868686;
+                margin-bottom: 1rem;
+            }
+
+            .card-title {
+                font-size: 14px;
+                color: #007bff;
+                margin-bottom: 0.5rem;
+            }
+
+            img {
+                width: 100%;
+                max-width: 150px;
+                margin-bottom: 1rem;
+            }
+
+            h4 {
+                font-size: 16px;
+                color: #555;
+                margin-bottom: 1rem;
+            }
+
+            p {
+                font-size: 14px;
+                color: #333;
+                line-height: 1.5;
+                padding-bottom: 20px;
+            }
+        }
+    }
+
+    .btn-primary {
+        display: block;
+        margin: 2rem auto 0;
+        padding: 0.75rem 1.5rem;
+        background-color: #FF6A00 !important;
+        border: 1px solid #FF6A00;
+        border-radius: 5px;
+        color: white;
+        font-size: 1rem;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: transparent !important;
+            color: #FF6A00;
+            border: 1px solid #FF6A00;
+        }
+    }
+}
+
+.purchase-box {
+    border: 1px solid #e0e0e0; /* Border style */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Inner spacing */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    text-align: center; /* Center align text */
+    display: flex;
+    align-items: center;
+
+    img {
+        margin-top: 10px;
+        cursor: pointer;
+    }
+
+    .btn {
+        background-color: #FF6A00 !important; /* Button background color */
+        color: white !important; /* Button text color */
+        width: 200px;
+        height: 52px;
+        border: 1px solid #FF6A00;
+        border-radius: 5px; /* Rounded button */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none; /* Remove underline */
+        padding: 0px; /* Button padding */
+
+        &:hover {
+            background-color: white !important; /* Change on hover */
+            border: 1px solid #FF6A00;
+            color: #FF6A00 !important;
+        }
+    }
+
+    p {
+        margin-top: 20px;
+    }
+
+    .text-gray {
+        color: gray; /* Text color */
+    }
+}
+
+.bottom-fixed {
+    display: none !important;
+}
+
+
+
+@media (max-width: 768px) {
+
+    body {
+        padding-bottom: 100px; /* Space for the fixed button */
+    }
+
+    .purchase-box {
+        display: none !important; /* Hide purchase box on mobile */
+    }
+
+    .bottom-container {
+        height: 72px;
+        background-color: white;
+        position: fixed;
+        bottom: 0;
+        left: 0;        
+        right: 0;  
+        
+    }
+
+    .bottom-fixed {
+        display: block !important;
+        background-color: #FF6A00 !important;
+        color: white;
+        width: 90%;
+        padding: 15px;
+        text-align: center;
+        z-index: 1000; /* Ensure it stays on top */
+        border: 3px solid #FF6A00;
+        border-radius: 10px;
+        transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease; /* Smooth transition */
+
+        &:hover {
+            color: white !important;
+        }
+    }
+}
+
